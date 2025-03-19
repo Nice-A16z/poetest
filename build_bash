@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# 创建src目录
+mkdir src
+
+# 创建assets目录及其子目录和文件
+mkdir src/assets
+mkdir src/assets/styles
+mkdir src/assets/icons
+touch src/assets/styles/variables.css
+touch src/assets/styles/animations.css
+
+# 创建components目录及其子目录和文件
+mkdir src/components
+mkdir src/components/common
+mkdir src/components/layout
+mkdir src/components/game
+
+# 在common目录下创建子目录
+mkdir src/components/common/Button
+mkdir src/components/common/Card
+mkdir src/components/common/Modal
+
+# 在layout目录下创建子目录
+mkdir src/components/layout/Header
+mkdir src/components/layout/Footer
+
+# 在game目录下创建子目录
+mkdir src/components/game/Roulette
+mkdir src/components/game/BetHistory
+mkdir src/components/game/BetControls
+
+# 创建contexts目录及其文件
+mkdir src/contexts
+touch src/contexts/ThemeContext.js
+touch src/contexts/WalletContext.js
+touch src/contexts/GameContext.js
+
+# 创建hooks目录及其文件
+mkdir src/hooks
+touch src/hooks/useAudio.js
+touch src/hooks/useParallax.js
+
+# 创建utils目录及其文件
+mkdir src/utils
+touch src/utils/animations.js
+touch src/utils/gameLogic.js
+
+# 创建App.js和index.js
+touch src/App.js
+touch src/index.js
+
