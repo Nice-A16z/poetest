@@ -15,7 +15,7 @@ function App() {
     <ThemeProvider>
       <WalletProvider>
         <GlobalStyles />
-        <ThemeToggle />
+        <ThemeToggle isMobile={false} />
         <Header />
         <main>
           <Hero />

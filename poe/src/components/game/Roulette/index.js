@@ -7,6 +7,7 @@ import BetControls from "./BetControls";
 import BetHistory from "./BetHistory";
 import WinModal from "./WinModal";
 import LoseModal from "./LoseModal";
+import useResponsive from "../../../hooks/useResponsive";
 
 const FeaturedGame = styled.div`
   background-color: var(--color-background-elevated);
@@ -14,6 +15,8 @@ const FeaturedGame = styled.div`
   overflow: hidden;
   border: var(--border-thin);
   margin-bottom: var(--space-xl);
+  margin-left: 10px;
+  margin-right: 10px;
   box-shadow: var(--shadow-md);
   transition: all 0.4s var(--easing-magnetic);
   position: relative;
@@ -211,6 +214,48 @@ const FeaturedTag = styled.div`
   }
 `;
 
+// 添加响应式容器样式
+const GameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-md);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+`;
+
+const GameMainSection = styled.div`
+  flex: 1;
+  min-width: 0; /* 防止flex子项溢出 */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+
+  @media (min-width: 768px) {
+    flex: 2;
+    flex-direction: row;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+`;
+
+const GameSideSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex: 1;
+    max-width: 380px;
+  }
+`;
+
 const GameContent = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -299,6 +344,9 @@ const RouletteGame = () => {
   ]);
 
   const resultIndicatorRef = useRef(null);
+
+  // 在组件内部
+  const { isMobile } = useResponsive();
 
   // 更新潜在获胜金额
   useEffect(() => {
@@ -574,6 +622,8 @@ const RouletteGame = () => {
 
   return (
     <FeaturedGame className="featured-game gpu-layer">
+      {/* <GameContainer> */}
+
       <GameHeader>
         <GameLeftSection>
           <GameTitle>
@@ -594,41 +644,51 @@ const RouletteGame = () => {
         <FeaturedTag>热门游戏</FeaturedTag>
       </GameHeader>
 
-      <GameContent>
-        <RouletteWheel
-          isSpinning={isSpinning}
-          selectedBet={selectedBet}
-          onSelectBet={handleBetSelect}
-          spinResult={spinResult}
-          resultIndicatorRef={resultIndicatorRef}
-        />
+      {/* <GameContent> */}
+      <GameContainer>
+        <GameMainSection>
+          <RouletteWheel
+            isSpinning={isSpinning}
+            selectedBet={selectedBet}
+            onSelectBet={handleBetSelect}
+            spinResult={spinResult}
+            resultIndicatorRef={resultIndicatorRef}
+            // 在手机上可以减少某些视觉效果
+            simplifiedEffects={isMobile}
+          />
 
-        <BetControls
-          selectedBet={selectedBet}
+          <BetControls
+            selectedBet={selectedBet}
+            betAmount={betAmount}
+            potentialWin={potentialWin}
+            isSpinning={isSpinning}
+            onBetSelect={handleBetSelect}
+            onBetAmountChange={handleBetAmountChange}
+            onSpin={handleSpin}
+            betsHistory={betsHistory}
+          />
+          {/* </GameContent> */}
+        </GameMainSection>
+
+        {/* <GameSideSection>
+          <BetHistory bets={recentBets} />
+        </GameSideSection> */}
+
+        <WinModal
+          isOpen={showWinModal}
           betAmount={betAmount}
-          potentialWin={potentialWin}
-          isSpinning={isSpinning}
-          onBetSelect={handleBetSelect}
-          onBetAmountChange={handleBetAmountChange}
-          onSpin={handleSpin}
-          betsHistory={betsHistory}
+          winAmount={betAmount * 2}
+          onContinue={handleContinue}
+          onCollect={handleCollect}
+          onClose={() => setShowWinModal(false)}
         />
-      </GameContent>
 
-      <WinModal
-        isOpen={showWinModal}
-        betAmount={betAmount}
-        winAmount={betAmount * 2}
-        onContinue={handleContinue}
-        onCollect={handleCollect}
-        onClose={() => setShowWinModal(false)}
-      />
-
-      <LoseModal
-        isOpen={showLoseModal}
-        onTryAgain={handleContinue}
-        onClose={() => setShowLoseModal(false)}
-      />
+        <LoseModal
+          isOpen={showLoseModal}
+          onTryAgain={handleContinue}
+          onClose={() => setShowLoseModal(false)}
+        />
+      </GameContainer>
     </FeaturedGame>
   );
 };

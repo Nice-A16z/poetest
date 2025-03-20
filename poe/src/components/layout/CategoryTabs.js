@@ -5,83 +5,82 @@ import useAudio from '../../hooks/useAudio';
 
 const TabsContainer = styled.div`
   display: flex;
-  overflow-x: auto;
   gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding-bottom: var(--space-xs);
-  border-bottom: var(--border-thin);
-  position: relative;
+  padding: var(--space-sm);
+  background: var(--color-background-elevated);
+  border-radius: var(--radius-lg);
+  border: var(--border-thin);
+  margin: 0 10px 10px;  // 与外层容器保持一致的边距,底部增加10px间距
   
-  &::-webkit-scrollbar {
-    display: none;
+  @media (max-width: 560px) {
+    // 移动端样式
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: var(--space-xs);
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    // 添加左右渐变遮罩，提示可滚动
+    background: linear-gradient(
+      to right,
+      var(--color-background-elevated) 0%,
+      var(--color-background-elevated) 90%,
+      transparent 100%
+    );
   }
-  
-  .theme-light & {
-    border-bottom-color: var(--color-primary-alpha);
+
+  @media (min-width: 768px) {
+    // PC端样式
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: var(--space-md);
+    gap: var(--space-md);
   }
 `;
 
-const Tab = styled.button`
-  padding: var(--space-sm) var(--space-lg);
-  color: var(--color-text-secondary);
-  font-size: 17px;
-  font-weight: 600;
+const TabItem = styled.button`
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-full);
+  background: ${props => props.isActive 
+    ? 'var(--color-primary)' 
+    : 'var(--color-background-pressed)'
+  };
+  color: ${props => props.isActive 
+    ? 'var(--color-background)' 
+    : 'var(--color-text)'
+  };
+  border: 1px solid ${props => props.isActive 
+    ? 'var(--color-primary)' 
+    : 'transparent'
+  };
+  font-weight: ${props => props.isActive ? '600' : '500'};
   white-space: nowrap;
   transition: all 0.3s var(--easing-magnetic);
-  border-radius: var(--radius-md);
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, var(--color-primary-alpha), transparent);
-    transform: translateX(-100%);
-    z-index: 1;
-  }
-  
-  &:hover::before {
-    transform: translateX(100%);
-    transition: transform 0.7s ease;
-  }
   
   &:hover {
-    color: var(--color-text-primary);
     transform: translateY(-2px);
+    box-shadow: ${props => props.isActive 
+      ? '0 8px 16px var(--color-primary-glow)' 
+      : 'var(--shadow-sm)'
+    };
   }
   
-  &.active {
-    color: var(--color-primary);
-    background-color: var(--color-primary-alpha);
-    box-shadow: 0 5px 15px var(--color-primary-glow);
+  @media (max-width: 560px) {
+    // 移动端样式
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+    flex: 0 0 auto;
+    min-width: 80px;  // 确保每个tab有最小宽度
   }
-  
-  &.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, var(--color-primary), var(--color-primary-light));
-    border-radius: var(--radius-full);
-    animation: borderPulse 2s infinite alternate ease-in-out;
-  }
-  
-  @keyframes borderPulse {
-    0% { opacity: 0.7; }
-    100% { opacity: 1; }
-  }
-  
-  .theme-light & {
-    color: var(--theme-light-text-secondary);
-  }
-  
-  .theme-light &.active {
-    color: var(--color-primary-dark);
+
+  @media (min-width: 768px) {
+    // PC端样式
+    padding: var(--space-sm) var(--space-lg);
+    min-width: 120px;
   }
 `;
 
@@ -90,13 +89,11 @@ const CategoryTabs = () => {
   const { playClickSound } = useAudio();
   
   const categories = [
-    '全部游戏',
-    '德州扑克',
-    '奥马哈',
-    '短牌',
-    '锦标赛',
-    '现金桌',
-    '休闲游戏'
+    { id: 0, name: "全部游戏", icon: "🎮" },
+    { id: 1, name: "热门游戏", icon: "🔥" },
+    { id: 2, name: "最新上线", icon: "✨" },
+    { id: 3, name: "我的收藏", icon: "⭐" },
+    { id: 4, name: "推荐游戏", icon: "👍" },
   ];
   
   const handleTabClick = (index) => {
@@ -110,15 +107,18 @@ const CategoryTabs = () => {
   };
   
   return (
-    <TabsContainer className="category-tabs">
-      {categories.map((category, index) => (
-        <Tab
-          key={index}
-          className={`category-tab interactive-element ${activeTab === index ? 'active' : ''}`}
-          onClick={() => handleTabClick(index)}
+    <TabsContainer>
+      {categories.map((category) => (
+        <TabItem
+          key={category.id}
+          isActive={category.id === activeTab}
+          onClick={() => handleTabClick(category.id)}
         >
-          {category}
-        </Tab>
+          <span className="icon" style={{ marginRight: '4px' }}>
+            {category.icon}
+          </span>
+          {category.name}
+        </TabItem>
       ))}
     </TabsContainer>
   );

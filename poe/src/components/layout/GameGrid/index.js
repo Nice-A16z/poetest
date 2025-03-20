@@ -5,6 +5,8 @@ import useAudio from '../../../hooks/useAudio';
 
 const Section = styled.div`
   margin-bottom: var(--space-xxl);
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 const SectionTitle = styled.h2`

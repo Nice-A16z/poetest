@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   :root {
@@ -135,7 +135,35 @@ export const GlobalStyles = createGlobalStyle`
       transparent 70%
     );
     --cursor-scale: 1;
+
+    /* 添加响应式间距变量 */
+    @media (max-width: 767px) {
+      --space-xl: 24px;
+      --space-lg: 20px;
+      --space-md: 16px;
+      --space-sm: 12px;
+      --space-xs: 8px;
+      --space-xxs: 4px;
+      
+      --font-size-xl: 18px;
+      --font-size-lg: 16px;
+      --font-size-md: 14px;
+      --font-size-sm: 12px;
+      --font-size-xs: 11px;
+    }
   }
+
+  /* 增加触摸友好样式 */
+  @media (max-width: 767px) {
+    button, .interactive-element {
+      min-height: 44px; /* 确保触摸目标足够大 */
+    }
+    
+    /* 增加滚动流畅度 */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }  
 
   /* 全局性能优化 */
   .gpu-layer {
