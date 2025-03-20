@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { WalletProvider } from './contexts/WalletContext';
+import GlobalStyles from './assets/styles/variables';
+import ThemeToggle from './components/common/ToggleTheme/index';
+import Header from './components/layout/Header';
+import Hero from './components/layout/Hero';
+import CategoryTabs from './components/layout/CategoryTabs';
+import RouletteGame from './components/game/Roulette';
+import GameGrid from './components/layout/GameGrid';
+import Footer from './components/layout/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <WalletProvider>
+        <GlobalStyles />
+        <ThemeToggle />
+        <Header />
+        <main>
+          <Hero />
+          <div className="container">
+            <CategoryTabs />
+            <RouletteGame />
+            <GameGrid />
+          </div>
+        </main>
+        <Footer />
+      </WalletProvider>
+    </ThemeProvider>
   );
 }
 
