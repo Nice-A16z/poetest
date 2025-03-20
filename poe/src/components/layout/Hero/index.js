@@ -168,7 +168,7 @@ const Hero = () => {
       <HeroBackground className="hero-background" />
       <Container>
         <HeroContent data-parallax="0.2">
-          <HeroTitle>最好玩的加密货币博彩平台</HeroTitle>
+          <HeroTitle>最好玩的加密货币游戏平台</HeroTitle>
           <HeroSubtitle>体验高质量的扑克和游戏，与来自全球的玩家一同竞技，尽情享受高品质娱乐。</HeroSubtitle>
           <HeroCta>
             <Button variant="primary" size="lg" className="interactive-element">

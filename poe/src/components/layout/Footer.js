@@ -702,7 +702,7 @@ const Footer = () => {
           <CertGroup>
             <CertItem className="interactive-element">
               <CertIcon>🔞</CertIcon>
-              <span>负责任博彩</span>
+              <span>负责任游戏</span>
             </CertItem>
             <CertItem className="interactive-element">
               <CertIcon>🏆</CertIcon>
