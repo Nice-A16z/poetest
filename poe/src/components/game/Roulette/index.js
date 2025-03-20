@@ -644,7 +644,6 @@ const RouletteGame = () => {
         <FeaturedTag>热门游戏</FeaturedTag>
       </GameHeader>
 
-      {/* <GameContent> */}
       <GameContainer>
         <GameMainSection>
           <RouletteWheel
@@ -667,12 +666,7 @@ const RouletteGame = () => {
             onSpin={handleSpin}
             betsHistory={betsHistory}
           />
-          {/* </GameContent> */}
         </GameMainSection>
-
-        {/* <GameSideSection>
-          <BetHistory bets={recentBets} />
-        </GameSideSection> */}
 
         <WinModal
           isOpen={showWinModal}

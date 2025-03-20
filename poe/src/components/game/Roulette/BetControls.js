@@ -5,7 +5,11 @@ import useAudio from '../../../hooks/useAudio';
 
 const GameControlsContainer = styled.div`
   flex: 1;
-  min-width: 320px;
+  width: 100%;
+  
+  @media (max-width: 480px) {
+    padding: 0 var(--space-xs);
+  }
 `;
 
 const BettingCard = styled.div`
@@ -19,6 +23,11 @@ const BettingCard = styled.div`
   will-change: transform, box-shadow;
   position: relative;
   margin-bottom: var(--space-lg);
+  
+  @media (max-width: 480px) {
+    margin-bottom: var(--space-md);
+    border-radius: var(--radius-md);
+  }
   
   &::before {
     content: '';
@@ -59,6 +68,10 @@ const CardHeader = styled.div`
   background-color: var(--color-background-elevated);
   position: relative;
   z-index: 1;
+  
+  @media (max-width: 480px) {
+    padding: var(--space-sm);
+  }
 `;
 
 const CardTitle = styled.div`
@@ -92,6 +105,10 @@ const CardBody = styled.div`
   padding: var(--space-md);
   position: relative;
   z-index: 1;
+  
+  @media (max-width: 480px) {
+    padding: var(--space-sm);
+  }
 `;
 
 const BetOptions = styled.div`
@@ -99,6 +116,11 @@ const BetOptions = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: var(--space-sm);
   margin-bottom: var(--space-md);
+  
+  @media (max-width: 480px) {
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
 `;
 
 const BetOption = styled.button`
@@ -115,6 +137,11 @@ const BetOption = styled.button`
   overflow: hidden;
   transform: translateZ(0);
   will-change: transform, box-shadow;
+  
+  @media (max-width: 480px) {
+    padding: var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
   
   &::before {
     content: '';
@@ -231,6 +258,10 @@ const InputActions = styled.div`
   transform: translateY(-50%);
   display: flex;
   gap: 4px;
+  
+  @media (max-width: 480px) {
+    gap: 2px;
+  }
 `;
 
 const InputAction = styled.button`
@@ -245,6 +276,10 @@ const InputAction = styled.button`
   transition: all 0.3s var(--easing-magnetic);
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 480px) {
+    padding: 4px 6px;
+  }
   
   &::before {
     content: '';
@@ -290,6 +325,11 @@ const PotentialWin = styled.div`
   position: relative;
   overflow: hidden;
   transition: all 0.3s var(--easing-magnetic);
+  
+  @media (max-width: 480px) {
+    padding: var(--space-xs) var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
   
   &::before {
     content: '';
@@ -470,6 +510,10 @@ const BetsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--space-sm);
+  
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
 `;
 
 const BetCard = styled.div`
