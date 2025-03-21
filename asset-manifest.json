@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/poetest/static/js/main.039218cf.js",
+    "main.js": "/poetest/static/js/main.20365a05.js",
     "index.html": "/poetest/index.html",
-    "main.039218cf.js.map": "/poetest/static/js/main.039218cf.js.map"
+    "main.20365a05.js.map": "/poetest/static/js/main.20365a05.js.map"
   },
   "entrypoints": [
-    "static/js/main.039218cf.js"
+    "static/js/main.20365a05.js"
   ]
 }
