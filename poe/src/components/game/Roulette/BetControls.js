@@ -488,10 +488,13 @@ const HistoryTotal = styled.div`
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   background-color: var(--color-background-elevated);
+  display: flex;
+  align-items: center;
   padding: 6px 12px;
+  height: 32px;
+  line-height: 1;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
   transition: all 0.3s var(--easing-magnetic);
   
   &:hover {

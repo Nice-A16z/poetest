@@ -25,6 +25,11 @@ const GameVisual = styled.div`
   z-index: 1;
   transform: translateZ(0);
   will-change: transform, box-shadow;
+  
+  @media (max-width: 480px) {
+    padding: var(--space-sm);
+    margin: 0 var(--space-xs);
+  }
 
   &:hover {
     transform: translateY(-5px);

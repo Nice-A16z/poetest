@@ -60,8 +60,9 @@ const FooterUpper = styled.div`
     border-top-color: var(--color-primary-alpha);
   }
   
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     gap: var(--space-lg);
+    flex-direction: column;
   }
 `;
 
@@ -70,6 +71,11 @@ const FooterBrand = styled.div`
   min-width: 280px;
   max-width: 400px;
   position: relative;
+  
+  @media (max-width: 767px) {
+    max-width: 100%;
+    margin-bottom: var(--space-lg);
+  }
 `;
 
 const Logo = styled.a`
@@ -197,9 +203,19 @@ const FooterLinksWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: var(--space-xl);
+  
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    width: 100%;
+  }
 `;
 
-const FooterLinksColumn = styled.div``;
+const FooterLinksColumn = styled.div`
+  @media (max-width: 767px) {
+    padding: var(--space-xs) 0;
+  }
+`;
 
 const FooterLinksTitle = styled.h3`
   font-weight: 600;
@@ -230,6 +246,12 @@ const FooterLinksTitle = styled.h3`
   &:hover::after {
     width: 100%;
   }
+
+  @media (max-width: 767px) {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-xs);
+  }
 `;
 
 const FooterLinks = styled.ul`
@@ -237,16 +259,29 @@ const FooterLinks = styled.ul`
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+
+  @media (max-width: 767px) {
+    gap: var(--space-xs);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    
+    li {
+      display: flex;
+      align-items: center;
+    }
+  }
 `;
 
 const FooterLink = styled.a`
   color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
   transition: all 0.3s var(--easing-magnetic);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
   padding-left: var(--space-sm);
   max-width: fit-content;
+  line-height: 1.2;
   
   &::before {
     content: '';
@@ -271,6 +306,12 @@ const FooterLink = styled.a`
     opacity: 1;
     transform: translateY(-50%) scale(1.5);
     box-shadow: 0 0 10px var(--color-primary-glow);
+  }
+
+  @media (max-width: 767px) {
+    font-size: var(--font-size-xs);
+    padding-left: var(--space-xs);
+    min-height: 24px;
   }
 `;
 
